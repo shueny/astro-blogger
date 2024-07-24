@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { cn } from "@/lib/utils";
-import { Icons } from "@/icons";
+import { cn } from '@/lib/utils'
+import { Icons } from '@/icons'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,19 +9,33 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Badge } from "@/components/ui/badge";
-import { navMenuConfig } from "@/config/nav-menu";
-import type { MenuItem } from "@/types";
+} from '@/components/ui/navigation-menu'
+import { Badge } from '@/components/ui/badge'
+import { navMenuConfig } from '@/config/nav-menu'
+import type { MenuItem } from '@/types'
 
-const links = navMenuConfig.links;
-const pages = navMenuConfig.pagesNav[0];
-const examples = navMenuConfig.examplesNav[0];
+const links = navMenuConfig.links
+const pages = navMenuConfig?.pagesNav ? navMenuConfig.pagesNav[0] : []
+const examples = navMenuConfig.examplesNav[0]
 
 export function MainNavigationMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
+        <NavigationMenuItem>
+          {links
+            .filter((l) => l.title === 'Portfolio')
+            .map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={navigationMenuTriggerStyle()}
+                {...(link.forceReload ? { 'data-astro-reload': true } : {})}
+              >
+                {link.title}
+              </a>
+            ))}
+        </NavigationMenuItem>
         {/* <NavigationMenuItem>
           <NavigationMenuTrigger>{pages.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -34,8 +48,8 @@ export function MainNavigationMenu() {
                   <Icons.logo className="size-8" />
                   <div className="mb-2 mt-3 text-lg font-medium">Astronomy</div>
                   <p className="text-sm leading-tight text-muted-foreground">
-                    Pages and examples apps built with Astro v4.5,
-                    shadcn/ui & react js.
+                    Pages and examples apps built with Astro v4.5, shadcn/ui &
+                    react js.
                     <br />
                     Open Source.
                   </p>
@@ -49,16 +63,18 @@ export function MainNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem> */}
 
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>{pages.title}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {pages.items?.map((page) => (
-                <ListItem key={page.title} {...page} />
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+        {/* {navMenuConfig.pagesNav?.length > 0 && (
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>{pages.title}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {pages.items?.map((page) => (
+                  <ListItem key={page.title} {...page} />
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        )} */}
 
         <NavigationMenuItem>
           <NavigationMenuTrigger>{examples.title}</NavigationMenuTrigger>
@@ -71,23 +87,25 @@ export function MainNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {links ? (
+        {links.filter((l) => l.title !== 'Portfolio') ? (
           <NavigationMenuItem>
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={navigationMenuTriggerStyle()}
-                {...(link.forceReload ? { "data-astro-reload": true } : {})}
-              >
-                {link.title}
-              </a>
-            ))}
+            {links
+              .filter((l) => l.title !== 'Portfolio')
+              .map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={navigationMenuTriggerStyle()}
+                  {...(link.forceReload ? { 'data-astro-reload': true } : {})}
+                >
+                  {link.title}
+                </a>
+              ))}
           </NavigationMenuItem>
         ) : null}
       </NavigationMenuList>
     </NavigationMenu>
-  );
+  )
 }
 
 const ListItem: React.FC<MenuItem> = ({
@@ -99,19 +117,19 @@ const ListItem: React.FC<MenuItem> = ({
   external,
   forceReload,
 }) => {
-  const target = external ? "_blank" : undefined;
+  const target = external ? '_blank' : undefined
 
   return (
     <li>
       <a
         target={target}
         href={disabled ? undefined : href}
-        {...(forceReload ? { "data-astro-reload": true } : {})}
+        {...(forceReload ? { 'data-astro-reload': true } : {})}
         className={cn(
-          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
           disabled
-            ? "text-muted-foreground hover:bg-transparent hover:text-muted-foreground"
-            : ""
+            ? 'text-muted-foreground hover:bg-transparent hover:text-muted-foreground'
+            : '',
         )}
       >
         <div className="flex items-center text-sm font-medium leading-none">
@@ -139,6 +157,6 @@ const ListItem: React.FC<MenuItem> = ({
         </p>
       </a>
     </li>
-  );
-};
-ListItem.displayName = "ListItem";
+  )
+}
+ListItem.displayName = 'ListItem'

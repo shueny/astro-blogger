@@ -5,7 +5,7 @@ import { navMenuConfig } from "@/config/nav-menu";
 import MainLayout from "@/layouts/main-layout.astro";
 
 const examples = navMenuConfig.examplesNav[0].items;
-const pages = navMenuConfig.pagesNav[0].items;
+const pages = navMenuConfig?.pagesNav ?navMenuConfig?.pagesNav[0].items:[];
 ---
 
 <MainLayout title="">
@@ -16,7 +16,7 @@ const pages = navMenuConfig.pagesNav[0].items;
         text="Differents pages and examples apps built with Astro v4.5, shadcn/ui & react js. Fully Open Source."
       />
 
-      <ExampleGrid title="Pages" items={pages} />
+      {(pages||[]).length > 0 &&<ExampleGrid title="Pages" items={pages} />}
       <ExampleGrid title="Examples Apps" items={examples} />
     </section>
   </div>
