@@ -1,4 +1,4 @@
-import db from '@astrojs/db'
+// import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
@@ -11,7 +11,7 @@ import simpleStackForm from 'simple-stack-form'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shueny.github.io',
-  base: 'astro-blogger',
+  base: '/',
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',
@@ -26,7 +26,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    db(),
+    // db(),
     simpleStackForm(),
   ],
   output: 'hybrid',
