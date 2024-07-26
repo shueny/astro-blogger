@@ -3,8 +3,8 @@ import type {SidebarNavItem, SiteConfig} from '@/types';
 export const siteConfig: SiteConfig = {
 	name: 'Shueny',
 	description:
-		'An modern example app built using Astro v4 & shadcn/ui. Inspired by shadcn/taxonomy.',
-	url: 'https://astro-nomy.vercel.app',
+		'Website built using Astro v4 & shadcn/ui. Inspired by shadcn/taxonomy.',
+	url: 'https://shueny.github.io/astro-blogger',
 	ogImage: 'https://astro-nomy.vercel.app/og.jpg',
 	links: {
 		instagram: 'https://www.instagram.com/shueny_wang/',
