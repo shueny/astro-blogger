@@ -1,12 +1,8 @@
 # Astronomy
 
-An open source application built using the latest features in Astro v4 with shadcn/ui.
+An open source application built using the latest features in Astro v4 with shadcn/ui and folks from [@miickasmt](https://twitter.com/miickasmt).
 
 ![blog](public/og.jpg)
-
-> **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@miickasmt](https://twitter.com/miickasmt).
-> See the roadmap below.
 
 ## About this project
 
