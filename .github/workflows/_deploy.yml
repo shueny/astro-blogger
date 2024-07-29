@@ -30,13 +30,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v2
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages # 更改為你想要部署的分支名稱
-          folder: dist # 構建輸出目錄
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Adjust the path to your build output directory
