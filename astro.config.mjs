@@ -11,7 +11,7 @@ import simpleStackForm from 'simple-stack-form'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shueny.github.io',
-  base: '/astro-blogger',
+  base: '/',
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',
